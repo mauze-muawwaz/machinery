@@ -200,7 +200,13 @@ func (b *Backend) updateState(s *tasks.TaskState) error {
 	if err != nil {
 		return fmt.Errorf("Marshal task state error: %v", err)
 	}
-
+	fmt.Println("Mauze >>> msg >>> ", msg) 
+	fmt.Println("Mauze >>> s.TaskUUID >>> ", s.TaskUUID)
+	if _, ok := b.tasks[s.TaskUUID]; ok{
+		fmt.Println("Mauze >>> PRESENT >>> ", b.tasks[s.TaskUUID])
+	}else{
+		fmt.Println("Mauze >>> NOT PRESENT")
+	}	
 	b.tasks[s.TaskUUID] = msg
 	return nil
 }
